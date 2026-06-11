@@ -5,10 +5,14 @@ import app.models.dim_date
 import app.models.dim_genre
 import app.models.dim_platform
 import app.models.fact_content_performance
+import app.models.ingestion_metadata
 from app.core.database import Base, engine
 
 
 def create_tables():
+    """
+    Create all warehouse tables.
+    """
 
     Base.metadata.create_all(bind=engine)
 
