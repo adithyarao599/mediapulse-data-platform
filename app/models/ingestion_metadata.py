@@ -20,3 +20,7 @@ class IngestionMetadata(Base):
     ingestion_timestamp = Column(DateTime, default=datetime.utcnow)
 
     status = Column(String(50))
+
+    checksum = Column(String(255))
+
+    file_version = Column(Integer)
