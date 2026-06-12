@@ -1,0 +1,38 @@
+[1mdiff --git a/app/ingestion/ingestion_engine.py b/app/ingestion/ingestion_engine.py[m
+[1mindex 312f10f..f72a4d1 100644[m
+[1m--- a/app/ingestion/ingestion_engine.py[m
+[1m+++ b/app/ingestion/ingestion_engine.py[m
+[36m@@ -1,28 +1,14 @@[m
+[31m-from app.ingestion.ingestion_config import ([m
+[31m-    INGESTION_CONFIG[m
+[31m-)[m
+[31m-[m
+[31m-from app.ingestion.spotify_ingestor import ([m
+[31m-    SpotifyIngestor[m
+[31m-)[m
+[32m+[m[32mfrom app.ingestion.ingestion_config import INGESTION_CONFIG[m
+[32m+[m[32mfrom app.ingestion.spotify_ingestor import SpotifyIngestor[m
+ [m
+ [m
+ class IngestionEngine:[m
+ [m
+[31m-    def run([m
+[31m-        self,[m
+[31m-        source_name[m
+[31m-    ):[m
+[32m+[m[32m    def run(self, source_name):[m
+ [m
+[31m-        config = ([m
+[31m-            INGESTION_CONFIG[[m
+[31m-                source_name[m
+[31m-            ][m
+[31m-        )[m
+[32m+[m[32m        config = INGESTION_CONFIG[source_name][m
+ [m
+[31m-        ingestor = SpotifyIngestor([m
+[31m-            config["source_file"][m
+[31m-        )[m
+[32m+[m[32m        ingestor = SpotifyIngestor(config["source_file"])[m
+ [m
+         df = ingestor.extract()[m
+ [m
