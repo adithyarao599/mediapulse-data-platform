@@ -1,7 +1,7 @@
 from sklearn.model_selection import train_test_split
 
+from app.ml.hyperparameter_tuning import HyperparameterTuning
 from app.ml.model_registry import ModelRegistry
-from app.ml.popularity_model import PopularityModel
 
 
 class TrainingPipeline:
@@ -12,7 +12,7 @@ class TrainingPipeline:
             features, target, test_size=0.2, random_state=42
         )
 
-        model = PopularityModel().train(x_train, y_train)
+        model = HyperparameterTuning.tune(x_train, y_train)
 
         ModelRegistry.save_model(model, "popularity_model")
 
