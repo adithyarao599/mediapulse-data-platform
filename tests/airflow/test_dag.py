@@ -2,7 +2,7 @@ from airflow.models import DagBag
 
 
 def test_dag_loaded():
+    dagbag = DagBag(include_examples=False)
 
-    dagbag = DagBag()
-
-    assert dagbag.get_dag("streaming_platform") is not None
+    assert len(dagbag.import_errors) == 0
+    assert "streaming_platform" in dagbag.dags

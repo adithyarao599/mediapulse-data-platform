@@ -6,7 +6,6 @@ on:
 
 jobs:
   test:
-
     runs-on: ubuntu-latest
 
     services:
@@ -40,7 +39,6 @@ jobs:
       AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: sqlite:////tmp/airflow/airflow.db
 
     steps:
-
       - name: Checkout
         uses: actions/checkout@v4
 
@@ -66,6 +64,7 @@ jobs:
       - name: Prepare Airflow
         run: |
           mkdir -p /tmp/airflow
+          airflow db migrate
 
       - name: Wait for PostgreSQL
         run: |
