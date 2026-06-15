@@ -6,7 +6,26 @@ on:
 
 jobs:
   test:
+
     runs-on: ubuntu-latest
+
+    services:
+      postgres:
+        image: postgres:16
+
+        env:
+          POSTGRES_USER: stream_admin
+          POSTGRES_PASSWORD: stream_password
+          POSTGRES_DB: streaming_dw
+
+        ports:
+          - 5432:5432
+
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
 
     env:
       POSTGRES_USER: stream_admin
@@ -17,6 +36,7 @@ jobs:
       LOG_LEVEL: INFO
 
     steps:
+
       - uses: actions/checkout@v4
 
       - uses: actions/setup-python@v5
@@ -33,6 +53,6 @@ jobs:
         run: |
           black --check .
 
-      - name: Tests
+      - name: Run Tests
         run: |
           pytest -v
