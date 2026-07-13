@@ -585,6 +585,161 @@ Potential production enhancements include:
 
 ---
 
+# Engineering Decisions
+
+MediaPulse was designed to reflect architectural patterns commonly found in modern enterprise data platforms. Every major technology and design decision was selected to balance simplicity, maintainability, scalability, and business value while remaining appropriate for a portfolio-scale implementation.
+
+---
+
+## Why Python?
+
+Python was selected as the primary programming language due to its mature ecosystem for data engineering and analytics.
+
+### Benefits
+
+* Extensive data processing libraries
+* Excellent PostgreSQL support
+* Strong ecosystem for ETL development
+* Readable and maintainable syntax
+* Widely adopted across data engineering teams
+
+Alternative Considered
+
+* Java
+
+Reason for choosing Python:
+
+Python significantly reduces development complexity while providing excellent support for data processing, orchestration, and analytics workflows.
+
+---
+
+## Why PostgreSQL?
+
+PostgreSQL serves as the analytical warehouse because it provides enterprise-grade relational database capabilities together with powerful SQL support.
+
+### Benefits
+
+* Mature relational database
+* Strong analytical SQL capabilities
+* ACID compliance
+* Excellent compatibility with Power BI
+* Reliable indexing and query optimization
+
+Alternative Considered
+
+* MySQL
+
+Reason for choosing PostgreSQL:
+
+PostgreSQL offers richer SQL functionality and is commonly used for analytical workloads and dimensional data warehouses.
+
+---
+
+## Why Apache Airflow?
+
+Modern data platforms require workflow orchestration rather than manually executing scripts.
+
+Apache Airflow was selected because it provides:
+
+* Workflow scheduling
+* Dependency management
+* Retry mechanisms
+* Monitoring
+* Logging
+* Scalable pipeline orchestration
+
+Alternative Considered
+
+* Cron jobs
+
+Reason for choosing Airflow:
+
+Cron is effective for simple scheduled tasks but lacks dependency management, monitoring, retries, and visualization. Airflow is purpose-built for complex data pipelines.
+
+---
+
+## Why Medallion Architecture?
+
+The platform adopts a Bronze → Silver → Gold architecture to progressively improve data quality while preserving traceability.
+
+### Bronze
+
+Preserves raw source data.
+
+### Silver
+
+Applies validation, cleaning, standardization, and business rules.
+
+### Gold
+
+Produces trusted datasets optimized for reporting and analytics.
+
+Benefits
+
+* Clear separation of responsibilities
+* Easier debugging
+* Improved maintainability
+* Reproducible processing
+* Enterprise-aligned architecture
+
+---
+
+## Why a Star Schema?
+
+Business intelligence workloads typically perform better when analytical data is organized using dimensional modeling.
+
+The warehouse follows a star schema consisting of one central fact table surrounded by descriptive dimension tables.
+
+Benefits
+
+* Simplified SQL queries
+* Faster analytical reporting
+* Reduced join complexity
+* Optimized Power BI performance
+* Widely adopted enterprise design
+
+---
+
+## Why Modular ETL?
+
+Instead of implementing a single monolithic pipeline, MediaPulse separates responsibilities into independent modules.
+
+Benefits
+
+* Improved maintainability
+* Easier testing
+* Better code reuse
+* Independent development
+* Simplified debugging
+* Clear ownership of each processing stage
+
+---
+
+## Why Docker?
+
+Containerization ensures that the platform can be executed consistently across different development environments.
+
+Benefits
+
+* Reproducible environments
+* Simplified onboarding
+* Dependency isolation
+* Deployment consistency
+
+---
+
+## Design Principles
+
+The platform was developed around the following engineering principles:
+
+* Modularity over monolithic design
+* Automation over manual execution
+* Reproducibility over environment-specific configuration
+* Data quality before analytics
+* Scalability through layered architecture
+* Maintainability through separation of concerns
+* Business value through analytics-ready datasets
+
 ## Current Project Status
 
 | Component              | Status         |
