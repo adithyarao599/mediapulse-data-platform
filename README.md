@@ -299,6 +299,275 @@ MediaPulse was designed around several engineering principles commonly used in e
 
 ---
 
+# Enterprise ETL Pipeline
+
+MediaPulse implements a modular Extract, Transform, Load (ETL) architecture designed around enterprise data engineering best practices. Rather than relying on a single monolithic script, each stage of the pipeline is independently responsible for ingestion, validation, transformation, analytics generation, and warehouse loading.
+
+The pipeline follows a layered Medallion Architecture to progressively improve data quality while preserving traceability throughout the data lifecycle.
+
+---
+
+## Pipeline Workflow
+
+The ETL process consists of the following stages:
+
+### Step 1 — Data Ingestion
+
+The ingestion engine reads entertainment datasets from multiple sources and performs initial validation before processing begins.
+
+Primary Responsibilities:
+
+* Source discovery
+* File validation
+* Metadata generation
+* Checksum verification
+* Version tracking
+* Archive management
+
+Key Modules
+
+```text
+app/ingestion/
+
+base_ingestor.py
+
+spotify_ingestor.py
+
+netflix_ingestor.py
+
+ingestion_engine.py
+
+checksum.py
+
+metadata_service.py
+
+archive_manager.py
+
+version_manager.py
+```
+
+---
+
+### Step 2 — Bronze Layer
+
+The Bronze layer stores raw source data while preserving the original structure.
+
+Objectives
+
+* Preserve source fidelity
+* Track ingestion metadata
+* Enable reproducibility
+* Maintain audit history
+
+Key Modules
+
+```text
+app/bronze/
+
+bronze_loader.py
+
+bronze_report.py
+```
+
+---
+
+### Step 3 — Silver Layer
+
+The Silver layer transforms raw data into standardized, validated datasets suitable for analytics.
+
+Transformations include:
+
+* Schema validation
+* Null handling
+* Duplicate removal
+* Date normalization
+* Genre mapping
+* Business rule enforcement
+* Standardization
+
+Key Modules
+
+```text
+app/silver/
+
+silver_pipeline.py
+
+standardizer.py
+
+schema_validator.py
+
+deduplicator.py
+
+genre_mapper.py
+
+date_standardizer.py
+
+null_handler.py
+
+business_rules.py
+```
+
+---
+
+### Step 4 — Gold Layer
+
+The Gold layer generates analytics-ready datasets that power dashboards and downstream machine learning workflows.
+
+Outputs include:
+
+* Executive KPIs
+* Trend analysis
+* Revenue metrics
+* Artist analytics
+* Country analytics
+* Recommendation features
+* Feature engineering
+
+Key Modules
+
+```text
+app/gold/
+
+gold_pipeline.py
+
+executive_kpis.py
+
+genre_metrics.py
+
+country_metrics.py
+
+trend_intelligence.py
+
+dashboard_products.py
+
+feature_store.py
+```
+
+---
+
+### Step 5 — Warehouse Loading
+
+The transformed datasets are loaded into a PostgreSQL dimensional warehouse using surrogate keys and optimized relationships.
+
+Responsibilities
+
+* Dimension loading
+* Fact loading
+* Referential integrity
+* Incremental loading
+* Warehouse auditing
+* Index management
+
+Key Modules
+
+```text
+app/warehouse/
+
+dimension_loader.py
+
+fact_loader.py
+
+incremental_loader.py
+
+key_resolver.py
+
+foreign_key_mapper.py
+
+warehouse_validator.py
+
+warehouse_monitor.py
+```
+
+---
+
+### Step 6 — Business Intelligence
+
+Curated warehouse tables serve as the single source of truth for interactive dashboards built in Power BI.
+
+Business users consume:
+
+* Executive KPIs
+* Geographic insights
+* Artist analytics
+* Genre performance
+* Trend analysis
+* Platform comparison
+
+---
+
+## Repository Structure
+
+The project is organized into independent modules to improve maintainability, scalability, and ease of development.
+
+| Directory     | Purpose                           |
+| ------------- | --------------------------------- |
+| app/ingestion | Data ingestion framework          |
+| app/bronze    | Raw data loading                  |
+| app/silver    | Data cleansing and transformation |
+| app/gold      | Business analytics generation     |
+| app/warehouse | Warehouse loading and management  |
+| app/models    | Warehouse schema definitions      |
+| airflow       | Workflow orchestration            |
+| tests         | Automated testing                 |
+| sql           | Dashboard queries                 |
+| deployment    | Deployment documentation          |
+| docs          | Technical documentation           |
+| assets        | Images, diagrams, and screenshots |
+
+---
+
+## Data Quality Framework
+
+Reliable analytics require trustworthy data.
+
+MediaPulse applies multiple validation layers before data reaches the warehouse.
+
+Quality checks include:
+
+* Schema validation
+* Duplicate detection
+* Missing value handling
+* Checksum verification
+* Business rule validation
+* Metadata tracking
+* Referential integrity validation
+* Warehouse quality monitoring
+
+This layered validation strategy improves confidence in downstream analytics and minimizes manual data correction.
+
+---
+
+## Metadata Management
+
+Every ingestion cycle records operational metadata including:
+
+* Dataset version
+* Load timestamp
+* File checksum
+* Processing status
+* Validation results
+* Pipeline execution history
+
+Metadata enables traceability, auditing, reproducibility, and future incremental loading strategies.
+
+---
+
+## Scalability Considerations
+
+Although MediaPulse currently operates as a batch-processing platform, its modular architecture has been designed with future scalability in mind.
+
+Potential production enhancements include:
+
+* Streaming ingestion using Apache Kafka
+* Cloud object storage integration
+* Distributed processing with Apache Spark
+* Cloud-native orchestration
+* Data lake integration
+* Automated lineage tracking
+* Real-time analytics
+
+---
+
 ## Technology Stack
 
 | Category         | Technologies                |
