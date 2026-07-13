@@ -808,3 +808,38 @@ Additional project documentation is available in the following files:
 | `CODE_OF_CONDUCT.md`  | Community participation guidelines                         |
 
 These documents complement the README by providing deeper insights into the project's architecture, engineering decisions, governance, and future direction.
+
+---
+
+# Roadmap
+
+The following enhancements are planned to further evolve MediaPulse into a production-grade data platform.
+
+## Short-Term
+
+- [ ] Incremental data ingestion
+- [ ] Slowly Changing Dimensions (SCD Type 2)
+- [ ] Data lineage visualization
+- [ ] Automated data profiling reports
+- [ ] Enhanced dashboard drill-through capabilities
+
+## Medium-Term
+
+- [ ] Kafka-based real-time streaming ingestion
+- [ ] dbt for SQL transformations
+- [ ] Great Expectations validation dashboards
+- [ ] MLflow experiment tracking
+- [ ] Feature Store integration
+
+## Long-Term
+
+- [ ] Snowflake data warehouse support
+- [ ] BigQuery integration
+- [ ] AWS deployment (S3 + ECS + MWAA)
+- [ ] Azure Data Factory pipeline
+- [ ] Kubernetes deployment
+- [ ] Terraform infrastructure provisioning
+- [ ] Grafana & Prometheus monitoring
+- [ ] Role-based access control (RBAC)
+- [ ] Data Catalog integration
+- [ ] CI/CD deployment to cloud infrastructure
