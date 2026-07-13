@@ -32,6 +32,87 @@ Rather than being a simple ETL pipeline, the project is designed to showcase pro
 
 ---
 
+## Project Highlights
+
+MediaPulse Data Platform demonstrates an end-to-end enterprise-inspired data engineering workflow, covering the complete lifecycle from raw data ingestion to business-ready analytics.
+
+| Category                  | Implementation                                       |
+| ------------------------- | ---------------------------------------------------- |
+| 🏗 Architecture           | Medallion Architecture (Bronze → Silver → Gold)      |
+| 🔄 Workflow Orchestration | Apache Airflow DAGs                                  |
+| 🗄 Data Warehouse         | PostgreSQL Star Schema                               |
+| ⚙️ ETL Pipeline           | Modular Multi-source ETL Framework                   |
+| 📊 Business Intelligence  | Power BI Executive Dashboards *(In Progress)*        |
+| ✅ Data Quality            | Schema Validation, Deduplication & Metadata Tracking |
+| 🧪 Testing                | Unit, ETL, Warehouse & Airflow Tests                 |
+| 📦 Containerization       | Docker                                               |
+| 📚 Documentation          | Enterprise-grade Technical Documentation             |
+
+### Key Achievements
+
+* Enterprise-inspired modular architecture
+* Automated workflow orchestration
+* Analytics-ready dimensional warehouse
+* Data quality validation framework
+* Metadata-driven ETL pipeline
+* Production-style documentation
+* Machine learning foundation
+* Business intelligence integration
+
+---
+
+## Project at a Glance
+
+| Metric | Value |
+|---------|------:|
+| Programming Language | Python 3.12 |
+| Data Sources | Spotify, Netflix *(Expandable)* |
+| Airflow DAGs | 6 |
+| Data Layers | Bronze, Silver, Gold |
+| Warehouse Design | PostgreSQL Star Schema |
+| SQL Dashboard Queries | 6 |
+| Architecture Diagrams | 4 |
+| Automated Tests | 15+ |
+| Python Modules | 80+ |
+| Documentation Files | 8 |
+| Containerization | Docker & Docker Compose |
+| Business Intelligence | Power BI *(In Progress)* |
+
+---
+
+## Table of Contents
+
+* [Overview](#overview)
+* [Project Highlights](#project-highlights)
+* [Business Problem](#business-problem)
+* [Business Objectives](#business-objectives)
+* [Key Features](#key-features)
+* [Current Project Status](#current-project-status)
+* [Architecture](#architecture)
+
+  * [System Architecture](#system-architecture)
+  * [End-to-End Data Flow](#end-to-end-data-flow)
+  * [Medallion Architecture](#medallion-architecture)
+  * [Data Warehouse Design](#data-warehouse-design)
+* [Technology Stack](#technology-stack)
+* [Enterprise ETL Pipeline](#enterprise-etl-pipeline)
+* [Repository Structure](#repository-structure)
+* [Data Quality Framework](#data-quality-framework)
+* [Metadata Management](#metadata-management)
+* [Scalability Considerations](#scalability-considerations)
+* [Engineering Decisions](#engineering-decisions)
+* [Production Readiness](#production-readiness)
+* [Testing Strategy](#testing-strategy)
+* [Deployment](#deployment)
+* [Dashboard Preview](#dashboard-preview)
+* [Project Documentation](#project-documentation)
+* [Roadmap](#roadmap)
+* [Lessons Learned](#lessons-learned)
+* [Interview Discussion](#interview-discussion)
+* [Project Vision](#project-vision)
+
+---
+
 ## Business Problem
 
 Entertainment platforms generate data from multiple independent systems.
@@ -47,7 +128,7 @@ These datasets often contain:
 
 Without proper engineering, analysts spend significant time cleaning data instead of generating business insights.
 
-MediaPulse solves this problem by building a reusable, automated analytics platform that transforms raw entertainment data into trusted, analytics-ready datasets.
+By transforming heterogeneous entertainment datasets into standardized, analytics-ready data, MediaPulse enables analysts and business stakeholders to spend less time preparing data and more time generating actionable insights.
 
 ---
 
@@ -62,6 +143,7 @@ The platform enables organizations to:
 * Generate executive KPIs
 * Support business intelligence dashboards
 * Prepare data for future machine learning workloads
+* Collectively, these objectives provide a reliable analytics foundation that supports consistent reporting, faster decision-making, and future machine learning initiatives.
 
 ---
 
@@ -85,6 +167,23 @@ The platform enables organizations to:
 
 ---
 
+## Current Project Status
+
+| Component              | Status         |
+| ---------------------- | -------------- |
+| Data Ingestion         | ✅ Complete     |
+| Bronze Layer           | ✅ Complete     |
+| Silver Layer           | ✅ Complete     |
+| Gold Layer             | ✅ Complete     |
+| PostgreSQL Warehouse   | ✅ Complete     |
+| Airflow Pipelines      | ✅ Complete     |
+| Data Quality Framework | ✅ Complete     |
+| Automated Testing      | ✅ Complete     |
+| Documentation          | 🚧 In Progress |
+| Power BI Dashboard     | 🚧 In Progress |
+
+---
+
 ## Architecture
 
 MediaPulse Data Platform follows a layered enterprise data architecture inspired by modern analytics platforms used across media and entertainment organizations. The platform separates ingestion, transformation, orchestration, storage, and analytics into independent layers to improve scalability, maintainability, and data quality.
@@ -95,8 +194,14 @@ The architecture is built around the Medallion Architecture (Bronze, Silver, Gol
 
 ## System Architecture
 
+**Figure 1. High-Level System Architecture**
+
+The following diagram illustrates the overall architecture of MediaPulse Data Platform, showing how data flows from source systems through the ETL pipeline into the PostgreSQL warehouse before being consumed by Power BI dashboards.
+
 <p align="center">
-<img src="assets/architecture/system-architecture.svg" width="100%">
+<img src="assets/architecture/system-architecture.svg"
+alt="MediaPulse System Architecture"
+width="90%">
 </p>
 
 The platform ingests entertainment datasets from multiple sources, processes them through a modular ETL pipeline, stores analytics-ready datasets in a PostgreSQL dimensional warehouse, and exposes business insights through Power BI dashboards.
@@ -114,10 +219,32 @@ The platform ingests entertainment datasets from multiple sources, processes the
 
 ---
 
+### Design Goals
+
+The platform architecture was designed around several core engineering principles:
+
+* Scalability
+* Maintainability
+* Reusability
+* Reliability
+* Modularity
+* Observability
+* Analytics-first design
+
+These principles guide the separation of responsibilities across each layer of the platform and enable future enhancements with minimal architectural changes.
+
+---
+
 ## End-to-End Data Flow
 
+**Figure 2. End-to-End Data Processing Pipeline**
+
+This diagram illustrates how raw entertainment datasets progress through ingestion, Medallion Architecture transformations, warehouse loading, and business intelligence reporting.
+
 <p align="center">
-<img src="assets/architecture/data-flow.svg" width="100%">
+<img src="assets/architecture/data-flow.svg"
+alt="MediaPulse End-to-End Data Flow"
+width="90%">
 </p>
 
 The MediaPulse pipeline follows a structured flow to ensure raw entertainment data is transformed into trusted business intelligence.
@@ -156,8 +283,14 @@ Power BI consumes warehouse tables to produce interactive executive dashboards a
 
 ## Medallion Architecture
 
+**Figure 3. Bronze, Silver, and Gold Data Layers**
+
+The Medallion Architecture progressively improves data quality by separating raw ingestion, standardized transformations, and analytics-ready datasets into independent processing layers.
+
 <p align="center">
-<img src="assets/architecture/medallion-architecture.svg" width="100%">
+<img src="assets/architecture/medallion-architecture.svg"
+alt="MediaPulse Medallion Architecture"
+width="90%">
 </p>
 
 MediaPulse adopts the Medallion Architecture to progressively improve data quality while maintaining traceability throughout the ETL lifecycle.
@@ -226,8 +359,14 @@ Primary Modules
 
 ## Data Warehouse Design
 
+**Figure 4. PostgreSQL Star Schema Data Warehouse**
+
+The dimensional warehouse is organized using a star schema consisting of a central fact table surrounded by descriptive dimensions, enabling efficient analytical querying and Power BI reporting.
+
 <p align="center">
-<img src="assets/architecture/warehouse-schema.svg" width="100%">
+<img src="assets/architecture/warehouse-schema.svg"
+alt="MediaPulse PostgreSQL Star Schema"
+width="90%">
 </p>
 
 The analytical warehouse follows a dimensional star schema designed to optimize reporting performance while simplifying business analysis.
@@ -495,6 +634,34 @@ Business users consume:
 
 ---
 
+### Project Structure Overview
+
+```text
+MediaPulse Data Platform
+
+├── app/
+│   ├── ingestion/
+│   ├── bronze/
+│   ├── silver/
+│   ├── gold/
+│   ├── warehouse/
+│   ├── models/
+│   ├── monitoring/
+│   ├── quality/
+│   └── utils/
+│
+├── airflow/
+├── assets/
+├── dashboards/
+├── datasets/
+├── deployment/
+├── docs/
+├── sql/
+├── tests/
+└── scripts/
+```
+---
+
 ## Repository Structure
 
 The project is organized into independent modules to improve maintainability, scalability, and ease of development.
@@ -565,23 +732,6 @@ Potential production enhancements include:
 * Data lake integration
 * Automated lineage tracking
 * Real-time analytics
-
----
-
-## Technology Stack
-
-| Category         | Technologies                |
-| ---------------- | --------------------------- |
-| Programming      | Python                      |
-| Database         | PostgreSQL                  |
-| Data Processing  | Pandas, NumPy               |
-| Orchestration    | Apache Airflow              |
-| Data Quality     | Custom Validation Framework |
-| Testing          | PyTest                      |
-| Containerization | Docker                      |
-| Version Control  | Git & GitHub                |
-| Visualization    | Power BI                    |
-| SQL              | PostgreSQL                  |
 
 ---
 
@@ -740,59 +890,275 @@ The platform was developed around the following engineering principles:
 * Maintainability through separation of concerns
 * Business value through analytics-ready datasets
 
-## Current Project Status
+---
 
-| Component              | Status         |
-| ---------------------- | -------------- |
-| Data Ingestion         | ✅ Complete     |
-| Bronze Layer           | ✅ Complete     |
-| Silver Layer           | ✅ Complete     |
-| Gold Layer             | ✅ Complete     |
-| PostgreSQL Warehouse   | ✅ Complete     |
-| Airflow Pipelines      | ✅ Complete     |
-| Data Quality Framework | ✅ Complete     |
-| Automated Testing      | ✅ Complete     |
-| Documentation          | 🚧 In Progress |
-| Power BI Dashboard     | 🚧 In Progress |
+## Production Readiness
+
+MediaPulse Data Platform has been designed using software engineering and data engineering practices commonly found in enterprise analytics platforms. While the project is intended for portfolio and educational purposes, its architecture reflects patterns that are scalable, maintainable, and production-inspired.
+
+### Production-Oriented Features
+
+| Area                   | Implementation                                  |
+| ---------------------- | ----------------------------------------------- |
+| Data Architecture      | Medallion Architecture (Bronze → Silver → Gold) |
+| Data Warehouse         | PostgreSQL Dimensional Star Schema              |
+| Workflow Orchestration | Apache Airflow DAG Scheduling                   |
+| Data Quality           | Validation, Deduplication, Schema Enforcement   |
+| Metadata Management    | Dataset Versioning & Processing Metadata        |
+| Monitoring             | Pipeline and Warehouse Monitoring Components    |
+| Configuration          | Environment-based Configuration                 |
+| Containerization       | Docker                                          |
+| Documentation          | Enterprise-grade Technical Documentation        |
+
+### Engineering Practices
+
+The project follows several engineering practices that improve maintainability and scalability.
+
+* Modular ETL architecture
+* Separation of concerns
+* Configuration-driven development
+* Metadata-driven processing
+* Automated workflow orchestration
+* Automated testing
+* Layered data quality validation
+* Documentation-first approach
+
+### Current Scope
+
+MediaPulse currently focuses on batch-oriented analytics using publicly available datasets and a local PostgreSQL warehouse.
+
+### Future Production Enhancements
+
+The architecture has been designed so that future improvements can be introduced with minimal structural changes.
+
+Planned enhancements include:
+
+* Google Cloud Platform deployment
+* BigQuery
+* Snowflake
+* Apache Kafka
+* Apache Spark
+* dbt
+* Kubernetes
+* Terraform
+* GitHub Actions CI/CD
+* Data lineage and catalog integration
 
 ---
 
-## Repository Structure
+### Evolution Roadmap
 
-> Repository structure documentation will be expanded with architecture diagrams and implementation details.
-
----
-
-## Documentation Roadmap
-
-The following sections will be added as the project documentation progresses:
-
-* System Architecture
-* Medallion Architecture
-* ETL Pipeline Walkthrough
-* Airflow Orchestration
-* PostgreSQL Warehouse Design
-* Star Schema
-* SQL Analytics
-* Power BI Dashboard
-* Testing Strategy
-* Deployment Guide
-* Engineering Decisions
-* Production Readiness
-* Lessons Learned
-* Future Enhancements
+| Current Implementation | Future Enterprise Evolution |
+| ---------------------- | --------------------------- |
+| Local PostgreSQL       | BigQuery / Snowflake        |
+| Batch ETL              | Apache Kafka Streaming      |
+| Docker                 | Kubernetes                  |
+| Local Power BI         | Power BI Service            |
+| Python ETL             | dbt + Spark                 |
+| Local Deployment       | Cloud-native Deployment     |
 
 ---
 
-## Project Vision
+## Testing Strategy
 
-MediaPulse is designed as a portfolio project that demonstrates enterprise data engineering principles commonly used in modern analytics platforms.
+Testing is treated as an integral part of the MediaPulse platform to improve reliability, maintainability, and confidence during future development.
 
-The long-term roadmap includes support for cloud-native deployment, streaming ingestion, infrastructure as code, and advanced analytics capabilities while maintaining a strong focus on software engineering best practices.
+### Test Coverage
+
+| Category               | Coverage                                                  |
+| ---------------------- | --------------------------------------------------------- |
+| Unit Tests             | Database helpers, utilities, transformation logic         |
+| ETL Tests              | Data ingestion and pipeline validation                    |
+| Warehouse Tests        | Fact loading, dimension loading and referential integrity |
+| Airflow Tests          | DAG validation and orchestration                          |
+| Machine Learning Tests | Recommendation model and drift detection                  |
+
+### Validation Layers
+
+Data quality is enforced throughout the pipeline rather than only after warehouse loading.
+
+Validation includes:
+
+* Schema validation
+* Duplicate detection
+* Missing value handling
+* Business rule validation
+* Checksum verification
+* Metadata validation
+* Referential integrity validation
+* Warehouse quality monitoring
+
+### Testing Framework
+
+MediaPulse uses **PyTest** to automate validation across different components of the platform, reducing regression risk while supporting future enhancements.
 
 ---
 
-> **This README is actively being expanded as the project reaches production-ready status.**
+## Deployment
+
+MediaPulse has been designed for reproducible local development while maintaining an architecture that can be extended to cloud environments.
+
+### Deployment Stack
+
+| Layer | Technology |
+|--------|------------|
+| Programming Language | Python 3.12 |
+| Database | PostgreSQL |
+| Workflow Orchestration | Apache Airflow |
+| Containerization | Docker & Docker Compose |
+| Business Intelligence | Power BI Desktop |
+| Version Control | Git & GitHub |
+
+### Local Deployment Workflow
+
+```text
+Developer
+     │
+     ▼
+Python Application
+     │
+     ▼
+Apache Airflow
+     │
+     ▼
+PostgreSQL Data Warehouse
+     │
+     ▼
+Power BI Dashboard
+```
+
+### Deployment Process
+
+1. Configure environment variables.
+2. Start PostgreSQL and Airflow services.
+3. Execute the ETL pipeline using Apache Airflow.
+4. Load curated datasets into the PostgreSQL warehouse.
+5. Connect Power BI to the warehouse for interactive reporting.
+
+### Future Deployment
+
+The current modular architecture has been intentionally designed so it can later support cloud-native deployments using managed orchestration, cloud data warehouses, Infrastructure as Code, and automated CI/CD pipelines.
+
+---
+
+## Installation
+
+### Prerequisites
+
+Before running MediaPulse, ensure the following software is installed:
+
+* Python 3.12+
+* PostgreSQL
+* Apache Airflow
+* Docker Desktop
+* Git
+* Power BI Desktop
+
+---
+
+### Clone the Repository
+
+```bash
+git clone https://github.com/adithyarao599/mediapulse-data-platform.git
+
+cd mediapulse-data-platform
+```
+
+---
+
+### Create a Virtual Environment
+
+```bash
+python -m venv venv
+```
+
+Activate the environment.
+
+Windows
+
+```bash
+venv\Scripts\activate
+```
+
+Linux / macOS
+
+```bash
+source venv/bin/activate
+```
+
+---
+
+### Install Dependencies
+
+```bash
+pip install -r requirements.txt
+```
+
+---
+
+### Configure Environment Variables
+
+Create a `.env` file using `.env.example`.
+
+Configure:
+
+* PostgreSQL connection
+* Airflow configuration
+* Application settings
+
+---
+
+### Execute the Pipeline
+
+Run the Airflow DAGs or execute the pipeline scripts.
+
+---
+
+### Launch Power BI
+
+Connect Power BI Desktop to the PostgreSQL warehouse and refresh the dataset.
+
+---
+
+## SQL Analytics
+
+MediaPulse includes analytical SQL queries designed to support executive reporting and business intelligence.
+
+Example analytical use cases include:
+
+* Top Performing Artists
+* Genre Performance Analysis
+* Geographic Insights
+* Platform Comparison
+* Revenue Analytics
+* Trend Analysis
+
+These queries are located in:
+
+```text
+sql/dashboard_queries/
+```
+
+The SQL scripts serve as the foundation for the Power BI dashboards and demonstrate dimensional warehouse querying techniques commonly used in enterprise reporting environments.
+
+---
+
+## Dashboard Preview
+
+Interactive Power BI dashboards are currently under development and will be added in the next project milestone.
+
+The completed dashboard suite will include:
+
+* Executive Overview
+* Artist Analytics
+* Genre Performance
+* Geographic Insights
+* Platform Comparison
+* Trend Analysis
+
+Once completed, this section will showcase screenshots and a demonstration of the business intelligence layer built on top of the MediaPulse data warehouse.
+
+---
 
 ## Project Documentation
 
@@ -843,3 +1209,45 @@ The following enhancements are planned to further evolve MediaPulse into a produ
 - [ ] Role-based access control (RBAC)
 - [ ] Data Catalog integration
 - [ ] CI/CD deployment to cloud infrastructure
+
+---
+
+## Lessons Learned
+
+Developing MediaPulse provided practical experience across the complete analytics engineering lifecycle.
+
+Key takeaways include:
+
+* Modular architectures significantly improve maintainability.
+* Data quality should be enforced throughout the pipeline rather than only at the warehouse layer.
+* Workflow orchestration simplifies operational management and automation.
+* Dimensional modeling provides a strong foundation for analytical reporting.
+* Comprehensive documentation is an essential part of production-quality software, not an afterthought.
+* Building projects with scalability in mind makes future enhancements significantly easier.
+
+---
+
+## Interview Discussion
+
+MediaPulse demonstrates concepts commonly discussed during Data Analyst, Analytics Engineer, and Data Engineer interviews, including:
+
+* ETL pipeline design
+* Medallion Architecture
+* PostgreSQL dimensional modeling
+* Star schema design
+* Apache Airflow orchestration
+* Data quality validation
+* Metadata management
+* Modular software architecture
+* Docker-based development environments
+* Business intelligence reporting
+
+This project serves as a practical foundation for discussing architectural decisions, trade-offs, and real-world data engineering workflows during technical interviews.
+
+---
+
+## Project Vision
+
+MediaPulse is designed as a portfolio project that demonstrates enterprise data engineering principles commonly used in modern analytics platforms.
+
+The long-term roadmap includes support for cloud-native deployment, streaming ingestion, infrastructure as code, and advanced analytics capabilities while maintaining a strong focus on software engineering best practices.
