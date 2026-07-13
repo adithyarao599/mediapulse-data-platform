@@ -85,20 +85,217 @@ The platform enables organizations to:
 
 ---
 
-## Architecture Overview
+## Architecture
 
-> **Architecture diagrams will be added in the next documentation phase.**
+MediaPulse Data Platform follows a layered enterprise data architecture inspired by modern analytics platforms used across media and entertainment organizations. The platform separates ingestion, transformation, orchestration, storage, and analytics into independent layers to improve scalability, maintainability, and data quality.
 
-The platform follows a layered enterprise data architecture consisting of:
+The architecture is built around the Medallion Architecture (Bronze, Silver, Gold), orchestrated with Apache Airflow and backed by a PostgreSQL dimensional warehouse.
 
-1. Data Sources
-2. Ingestion Layer
-3. Bronze Layer
-4. Silver Layer
-5. Gold Layer
-6. PostgreSQL Data Warehouse
-7. Business Intelligence
-8. Monitoring & Data Quality
+---
+
+## System Architecture
+
+<p align="center">
+<img src="assets/architecture/system-architecture.svg" width="100%">
+</p>
+
+The platform ingests entertainment datasets from multiple sources, processes them through a modular ETL pipeline, stores analytics-ready datasets in a PostgreSQL dimensional warehouse, and exposes business insights through Power BI dashboards.
+
+### Architecture Highlights
+
+* Multi-source batch data ingestion
+* Layered Medallion Architecture
+* Metadata-driven ETL
+* Automated validation and quality checks
+* Modular transformation pipeline
+* PostgreSQL star-schema warehouse
+* Workflow orchestration using Apache Airflow
+* Analytics-ready Power BI integration
+
+---
+
+## End-to-End Data Flow
+
+<p align="center">
+<img src="assets/architecture/data-flow.svg" width="100%">
+</p>
+
+The MediaPulse pipeline follows a structured flow to ensure raw entertainment data is transformed into trusted business intelligence.
+
+### Pipeline Stages
+
+**1. Data Sources**
+
+Entertainment datasets are collected from multiple publicly available platforms including Spotify, Netflix, YouTube, Movies, and Music Charts.
+
+**2. Data Ingestion**
+
+The ingestion engine validates files, records metadata, verifies checksums, and prepares raw datasets for downstream processing.
+
+**3. Bronze Layer**
+
+Raw data is preserved in its original structure while ingestion metadata and validation information are captured.
+
+**4. Silver Layer**
+
+Business rules, schema validation, standardization, deduplication, null handling, and quality checks produce clean analytical datasets.
+
+**5. Gold Layer**
+
+Business metrics, KPIs, aggregations, feature engineering, recommendation features, and executive analytics are generated.
+
+**6. Data Warehouse**
+
+Curated datasets are loaded into a PostgreSQL dimensional warehouse optimized for analytical queries.
+
+**7. Business Intelligence**
+
+Power BI consumes warehouse tables to produce interactive executive dashboards and analytical reports.
+
+---
+
+## Medallion Architecture
+
+<p align="center">
+<img src="assets/architecture/medallion-architecture.svg" width="100%">
+</p>
+
+MediaPulse adopts the Medallion Architecture to progressively improve data quality while maintaining traceability throughout the ETL lifecycle.
+
+### Bronze Layer
+
+Purpose:
+
+* Preserve raw source data
+* Capture ingestion metadata
+* Validate incoming datasets
+* Archive original files
+* Enable reproducibility
+
+Primary Modules
+
+* Bronze Loader
+* Metadata Writer
+* Validation Services
+
+---
+
+### Silver Layer
+
+Purpose:
+
+* Standardize schemas
+* Clean invalid records
+* Remove duplicates
+* Handle missing values
+* Apply business rules
+* Improve overall data quality
+
+Primary Modules
+
+* Standardizer
+* Deduplicator
+* Schema Validator
+* Genre Mapper
+* Date Standardizer
+* Null Handler
+* Quality Engine
+
+---
+
+### Gold Layer
+
+Purpose:
+
+* Generate business KPIs
+* Produce analytical datasets
+* Create feature engineering outputs
+* Support dashboard reporting
+* Prepare machine learning features
+
+Primary Modules
+
+* Executive KPIs
+* Revenue Metrics
+* Trend Intelligence
+* Recommendation Features
+* Dashboard Products
+* Feature Store
+
+---
+
+## Data Warehouse Design
+
+<p align="center">
+<img src="assets/architecture/warehouse-schema.svg" width="100%">
+</p>
+
+The analytical warehouse follows a dimensional star schema designed to optimize reporting performance while simplifying business analysis.
+
+### Fact Table
+
+**Fact_Content_Performance**
+
+Stores measurable business events and performance metrics used for reporting and analytics.
+
+---
+
+### Dimension Tables
+
+* Dim_Artist
+* Dim_Genre
+* Dim_Country
+* Dim_Platform
+* Dim_Date
+* Dim_Content
+
+These dimensions provide descriptive context for analytical queries while reducing redundancy and improving query performance.
+
+---
+
+### Why a Star Schema?
+
+MediaPulse uses a star schema because it:
+
+* Simplifies analytical queries
+* Improves Power BI performance
+* Reduces join complexity
+* Supports scalable business reporting
+* Aligns with enterprise data warehouse best practices
+
+---
+
+## Technology Stack
+
+| Layer                       | Technologies                      |
+| --------------------------- | --------------------------------- |
+| Programming Language        | Python 3                          |
+| Data Processing             | Pandas, NumPy                     |
+| Database                    | PostgreSQL                        |
+| Data Warehouse              | Dimensional Star Schema           |
+| Workflow Orchestration      | Apache Airflow                    |
+| Data Quality                | Custom Validation Framework       |
+| Machine Learning Foundation | Scikit-learn, Feature Engineering |
+| Containerization            | Docker                            |
+| Testing                     | PyTest                            |
+| Version Control             | Git & GitHub                      |
+| Business Intelligence       | Power BI                          |
+| SQL                         | PostgreSQL                        |
+
+---
+
+## Architectural Principles
+
+MediaPulse was designed around several engineering principles commonly used in enterprise data platforms:
+
+* Modular and reusable ETL components
+* Separation of ingestion, transformation, and analytics
+* Layered data quality enforcement
+* Metadata-driven processing
+* Scalable dimensional warehouse design
+* Automated workflow orchestration
+* Testable and maintainable codebase
+* Business-focused analytics delivery
 
 ---
 
