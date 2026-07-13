@@ -793,3 +793,18 @@ The long-term roadmap includes support for cloud-native deployment, streaming in
 ---
 
 > **This README is actively being expanded as the project reaches production-ready status.**
+
+## Project Documentation
+
+Additional project documentation is available in the following files:
+
+| Document              | Description                                                |
+| --------------------- | ---------------------------------------------------------- |
+| `ROADMAP.md`          | Planned features and long-term project vision              |
+| `CHANGELOG.md`        | Release history and notable changes                        |
+| `CONTRIBUTING.md`     | Contribution workflow and coding guidelines                |
+| `DESIGN_DECISIONS.md` | Architectural decisions and technology selection rationale |
+| `SECURITY.md`         | Security practices and vulnerability reporting             |
+| `CODE_OF_CONDUCT.md`  | Community participation guidelines                         |
+
+These documents complement the README by providing deeper insights into the project's architecture, engineering decisions, governance, and future direction.
