@@ -1,4 +1,5 @@
 import json
+from pathlib import Path
 
 
 def create_audit_report(table_name, rows_loaded, quality_score):
@@ -9,6 +10,9 @@ def create_audit_report(table_name, rows_loaded, quality_score):
         "quality_score": quality_score,
     }
 
-    with open(f"reports/warehouse/" f"audit/" f"{table_name}.json", "w") as file:
+    output_path = Path("reports/warehouse/audit") / f"{table_name}.json"
+    output_path.parent.mkdir(parents=True, exist_ok=True)
+
+    with open(output_path, "w") as file:
 
         json.dump(report, file, indent=4)

@@ -25,3 +25,8 @@ logs/
 artifacts/models/
 
 *.pkl
+
+# Generated pipeline output — never hand-author or commit these.
+# See reports/README.md for the convention.
+reports/*
+!reports/README.md
