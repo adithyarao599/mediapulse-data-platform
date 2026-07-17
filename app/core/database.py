@@ -1,4 +1,4 @@
-from sqlalchemy import create_engine
+from sqlalchemy import MetaData, create_engine
 from sqlalchemy.orm import declarative_base
 
 from app.config.settings import settings
@@ -32,4 +32,9 @@ engine = create_engine(
     pool_pre_ping=True,
 )
 
-Base = declarative_base()
+# All warehouse tables live in the streaming_dw Postgres schema (not the
+# "public" default) - setting it once here means every model that inherits
+# from Base is namespaced automatically, instead of repeating
+# __table_args__ = {"schema": "streaming_dw"} in all 8+ model files.
+metadata = MetaData(schema="streaming_dw")
+Base = declarative_base(metadata=metadata)

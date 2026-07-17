@@ -1,96 +1,77 @@
-# Contributing to MediaPulse Data Platform
+# Contributing to MediaPulse
 
-Thank you for your interest in contributing to MediaPulse Data Platform.
+Thank you for your interest in contributing to MediaPulse.
 
-This project is primarily maintained as a portfolio and learning project that demonstrates enterprise data engineering practices. Contributions, suggestions, bug reports, and improvements are welcome.
+## Development Setup
 
----
+Clone the repository:
 
-# Development Workflow
+```bash
+git clone <repository-url>
+cd mediapulse-data-platform
+```
 
-1. Fork the repository.
-2. Create a feature branch.
-3. Make focused, well-documented changes.
-4. Run tests before submitting changes.
-5. Submit a pull request with a clear description.
+Create a virtual environment:
 
----
+```bash
+python -m venv .venv
+source .venv/bin/activate
 
-# Coding Guidelines
+# Windows
+.venv\Scripts\activate
+```
 
-Please follow these principles when contributing:
+Install dependencies:
 
-* Keep modules focused on a single responsibility.
-* Write readable and maintainable Python code.
-* Add or update tests for new functionality.
-* Document significant architectural decisions.
-* Prefer modular designs over monolithic implementations.
+```bash
+pip install -r requirements.txt
+```
 
----
+## Running the Project
 
-# Commit Message Format
+Run the ingestion pipeline:
 
-The project follows Conventional Commits where appropriate.
+```bash
+python -m app.ingestion.spotify_ingestor
+```
 
-Examples:
+Run Airflow:
 
-* feat: add incremental warehouse loader
-* fix: resolve foreign key mapping issue
-* docs: expand architecture documentation
-* test: add warehouse validation tests
-* refactor: simplify metadata management
+```bash
+airflow standalone
+```
 
----
+Run tests:
 
-# Reporting Issues
+```bash
+pytest
+```
 
-When reporting issues, please include:
+## Coding Standards
 
-* Expected behavior
-* Actual behavior
-* Steps to reproduce
-* Relevant logs
-* Environment details
+- Follow PEP 8
+- Use meaningful variable names
+- Keep functions modular
+- Add type hints where practical
+- Write docstrings for public functions
 
----
+## Pull Requests
 
-# Feature Requests
+Before submitting a pull request:
 
-Feature requests should include:
+- Ensure all tests pass
+- Run formatting tools
+- Update documentation if required
+- Keep commits focused and descriptive
 
-* Problem statement
-* Proposed solution
-* Expected benefits
-* Potential implementation approach
+## Reporting Issues
 
----
+Please include:
 
-# Documentation Contributions
+- Environment details
+- Steps to reproduce
+- Expected behavior
+- Actual behavior
+- Relevant logs or screenshots
 
-Documentation improvements are always appreciated.
-
-Examples include:
-
-* Architecture clarification
-* Deployment improvements
-* Better setup instructions
-* Additional diagrams
-* Typographical corrections
-
----
-
-# Code Review Expectations
-
-Pull requests should:
-
-* Pass all tests
-* Maintain project structure
-* Include documentation updates when applicable
-* Avoid unnecessary dependencies
-* Preserve modular architecture
-
----
-
-# Thank You
-
-Your time and effort in helping improve MediaPulse Data Platform are greatly appreciated.
+Thank you for helping improve MediaPulse.

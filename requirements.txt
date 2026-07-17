@@ -7,6 +7,14 @@ python-dotenv==1.1.1
 
 apache-airflow==3.0.3
 
+# SQLAlchemy was previously an *undeclared* dependency here - app/core/database.py
+# and every app/models/*.py file import it directly, but requirements.txt only
+# worked because apache-airflow happens to pull it in transitively. Pinning it
+# explicitly means the app's actual dependency graph doesn't silently break if
+# Airflow ever changes its own SQLAlchemy requirement.
+SQLAlchemy==1.4.54
+alembic==1.18.5
+
 scikit-learn==1.5.2
 
 pytest==8.4.1
